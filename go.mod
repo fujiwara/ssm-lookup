@@ -1,6 +1,6 @@
 module github.com/fujiwara/ssm-lookup
 
-go 1.21.0
+go 1.18
 
 require (
 	github.com/alecthomas/kong v0.8.0
