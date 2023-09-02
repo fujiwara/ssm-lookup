@@ -10,10 +10,10 @@ package main
 import (
     "context"
     "fmt"
+    "sync"
 
     "github.com/aws/aws-sdk-go-v2/config"
-    "github.com/aws/aws-sdk-go-v2/service/ssm"
-    "github.com/lioosthuizen/ssm-lookup"
+    "github.com/fujiwara/ssm-lookup/ssm"
 )
 
 func main() {
