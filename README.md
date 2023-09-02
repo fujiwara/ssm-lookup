@@ -17,12 +17,13 @@ import (
 )
 
 func main() {
-    ctx := context.Background()
+	ctx := context.Background()
 	cfg, _  := config.LoadDefaultConfig(ctx)
-    cache := &sync.Map{}
+	cache := &sync.Map{}
 	app := ssm.New(cfg, cache)
 	value, _ := app.Lookup(ctx, parameterName)
 	fmt.Println(value)
+}
 ```
 
 ## LICENSE
