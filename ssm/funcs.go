@@ -12,7 +12,10 @@ import (
 func FuncMap(ctx context.Context, cfg aws.Config) (template.FuncMap, error) {
 	cache := sync.Map{}
 	app := New(cfg, &cache)
+	return app.FuncMap(ctx), nil
+}
 
+func (app *App) FuncMap(ctx context.Context) template.FuncMap {
 	return template.FuncMap{
 		"ssm": func(paramName string, index ...int) (string, error) {
 			value, err := app.Lookup(ctx, paramName, index...)
@@ -21,5 +24,5 @@ func FuncMap(ctx context.Context, cfg aws.Config) (template.FuncMap, error) {
 			}
 			return value, nil
 		},
-	}, nil
+	}
 }
