@@ -16,8 +16,12 @@ func FuncMap(ctx context.Context, cfg aws.Config) (template.FuncMap, error) {
 }
 
 func (app *App) FuncMap(ctx context.Context) template.FuncMap {
+	return app.FuncMapWithName(ctx, "ssm")
+}
+
+func (app *App) FuncMapWithName(ctx context.Context, name string) template.FuncMap {
 	return template.FuncMap{
-		"ssm": func(paramName string, index ...int) (string, error) {
+		name: func(paramName string, index ...int) (string, error) {
 			value, err := app.Lookup(ctx, paramName, index...)
 			if err != nil {
 				return "", fmt.Errorf("failed to lookup ssm parameter: %w", err)
